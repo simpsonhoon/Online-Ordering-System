@@ -1,0 +1,265 @@
+definitions:
+  controller.Controller:
+    type: object
+info:
+  contact: {}
+paths:
+  /customer/addMenu:
+    put:
+      consumes:
+      - application/json
+      description: 메뉴추가 기능과 배달중이면 신규주문 접수 기능(주문자가 수행)
+      parameters:
+      - description: menu
+        in: path
+        name: menu
+        required: true
+        type: string
+      - description: changeMenu
+        in: path
+        name: changeMenu
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call AddMenu, return success,fail by json.
+  /customer/changeMenu:
+    put:
+      consumes:
+      - application/json
+      description: 메뉴변경 기능과 조리중/배달중이면 변경 미수행 기능(주문자가 수행)
+      parameters:
+      - description: menu
+        in: path
+        name: menu
+        required: true
+        type: string
+      - description: changeMenu
+        in: path
+        name: changeMenu
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call ChangeMenu, return success,fail by json.
+  /customer/getAllOrderList:
+    get:
+      consumes:
+      - application/json
+      description: 전체 주문 내역 조회(주문자 수행)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call GetAllOrderList, return OrderList by json.
+  /customer/getMenu/:sortOption:
+    get:
+      consumes:
+      - application/json
+      description: 메뉴 리스트의 정렬 기준을 정하고 조회기능(주문자가 수행)
+      parameters:
+      - description: sortOption
+        in: path
+        name: sortOption
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call GetMenu, return sortOption, BurgerKing menu by json.
+  /customer/getReview/:menuName:
+    get:
+      consumes:
+      - application/json
+      description: 메뉴별 평점 및 리뷰 조회기능(주문자가 수행)
+      parameters:
+      - description: menuName
+        in: path
+        name: menuName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call GetReview, return MenuReview by json.
+  /customer/orderMenu:
+    post:
+      consumes:
+      - application/json
+      description: 메뉴 주문기능과 주문번호 받는 기능(주문자가 수행)
+      parameters:
+      - description: menu
+        in: path
+        name: menu
+        required: true
+        type: string
+      - description: pnum
+        in: path
+        name: pnum
+        required: true
+        type: string
+      - description: address
+        in: path
+        name: address
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call OrderMenu, return "Order Success", count by json.
+  /customer/writeReview:
+    post:
+      consumes:
+      - application/json
+      description: 메뉴별 평점 작성기능(주문자가 수행)
+      parameters:
+      - description: menu
+        in: path
+        name: menu
+        required: true
+        type: string
+      - description: grade
+        in: path
+        name: grade
+        required: true
+        type: string
+      - description: review
+        in: path
+        name: review
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call WriteReview, return "Your review registered" by json.
+  /seller/delete/:menu:
+    delete:
+      consumes:
+      - application/json
+      description: 메뉴판 삭제 기능(피주문자가 수행)
+      parameters:
+      - description: menu
+        in: path
+        name: menu
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call DeleteMenu, return "Delete menu success" by json.
+  /seller/register:
+    post:
+      consumes:
+      - application/json
+      description: 신규메뉴 등록기능(피주문자가 수행)
+      parameters:
+      - description: menu
+        in: path
+        name: menu
+        required: true
+        type: string
+      - description: price
+        in: path
+        name: price
+        required: true
+        type: string
+      - description: recommend
+        in: path
+        name: recommend
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call RegisterMenu, return ""Register menu Success" by json.
+  /seller/updateMenu:
+    put:
+      consumes:
+      - application/json
+      description: 메뉴판 수정 기능(피주문자가 수행)
+      parameters:
+      - description: menu
+        in: path
+        name: menu
+        required: true
+        type: string
+      - description: price
+        in: path
+        name: price
+        required: true
+        type: string
+      - description: recommend
+        in: path
+        name: recommend
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call UpdateMenu, return "Menu change success" by json.
+  /seller/updateOrderState:
+    put:
+      consumes:
+      - application/json
+      description: 주문내역 조회 및 상태 변경(피주문자가 수행)
+      parameters:
+      - description: menu
+        in: path
+        name: menu
+        required: true
+        type: string
+      - description: state
+        in: path
+        name: state
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Controller'
+      summary: call UpdateOrderState, return "State change success" by json.
+swagger: "2.0"

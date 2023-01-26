@@ -1,0 +1,400 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/customer/addMenu": {
+            "put": {
+                "description": "메뉴추가 기능과 배달중이면 신규주문 접수 기능(주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call AddMenu, return success,fail by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "menu",
+                        "name": "menu",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "changeMenu",
+                        "name": "changeMenu",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/changeMenu": {
+            "put": {
+                "description": "메뉴변경 기능과 조리중/배달중이면 변경 미수행 기능(주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call ChangeMenu, return success,fail by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "menu",
+                        "name": "menu",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "changeMenu",
+                        "name": "changeMenu",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/getAllOrderList": {
+            "get": {
+                "description": "전체 주문 내역 조회(주문자 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call GetAllOrderList, return OrderList by json.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/getMenu/:sortOption": {
+            "get": {
+                "description": "메뉴 리스트의 정렬 기준을 정하고 조회기능(주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call GetMenu, return sortOption, BurgerKing menu by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "sortOption",
+                        "name": "sortOption",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/getReview/:menuName": {
+            "get": {
+                "description": "메뉴별 평점 및 리뷰 조회기능(주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call GetReview, return MenuReview by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "menuName",
+                        "name": "menuName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/orderMenu": {
+            "post": {
+                "description": "메뉴 주문기능과 주문번호 받는 기능(주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call OrderMenu, return \"Order Success\", count by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "menu",
+                        "name": "menu",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "pnum",
+                        "name": "pnum",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "address",
+                        "name": "address",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer/writeReview": {
+            "post": {
+                "description": "메뉴별 평점 작성기능(주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call WriteReview, return \"Your review registered\" by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "menu",
+                        "name": "menu",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "grade",
+                        "name": "grade",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "review",
+                        "name": "review",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/seller/delete/:menu": {
+            "delete": {
+                "description": "메뉴판 삭제 기능(피주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call DeleteMenu, return \"Delete menu success\" by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "menu",
+                        "name": "menu",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/seller/register": {
+            "post": {
+                "description": "신규메뉴 등록기능(피주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call RegisterMenu, return \"\"Register menu Success\" by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "menu",
+                        "name": "menu",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "price",
+                        "name": "price",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "recommend",
+                        "name": "recommend",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/seller/updateMenu": {
+            "put": {
+                "description": "메뉴판 수정 기능(피주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call UpdateMenu, return \"Menu change success\" by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "menu",
+                        "name": "menu",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "price",
+                        "name": "price",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "recommend",
+                        "name": "recommend",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        },
+        "/seller/updateOrderState": {
+            "put": {
+                "description": "주문내역 조회 및 상태 변경(피주문자가 수행)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "call UpdateOrderState, return \"State change success\" by json.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "menu",
+                        "name": "menu",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "state",
+                        "name": "state",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.Controller"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "controller.Controller": {
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,23 @@
+[server] ##nomal type
+mode = "dev"
+port = ":8080"
+
+[db] #data access object
+[db.user] #이중 map type map[string]map[string]interface{}
+host = "mongodb://localhost:27017"
+user = "user"
+pass = "user!@"
+name = "userDB"
+
+[db.account]
+host = "mongodb://localhost:27017"
+user = "admin"
+pass = "admin!@"
+name = "accountDB"
+
+[log]
+level = "debug" # debug or info
+fpath = "./logs/oos" # 로그가 생성될 경로 : ./logs, 로그파일명 oos-logger_xxx.log
+msize = 2000    # 2g : megabytes
+mage = 7        # 7days
+mbackup = 5    # number of log files
